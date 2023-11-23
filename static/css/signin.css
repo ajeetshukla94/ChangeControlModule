@@ -1,0 +1,198 @@
+body,
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('../images/bg.png'), linear-gradient(45deg, #FF594D, #283779);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.background-gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.login-container {
+    background-color: #ebf6fa;
+    border: 1px solid #ebf6fa;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.image-container {
+    width: 50%;
+    /* Adjust the width to your preference */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-container form {
+    margin-top: 20px;
+}
+
+.form-content .input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-light .input-title {
+    color: #283779;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 0;
+    display: block;
+}
+
+.form-control {
+    border-radius: 5px !important;
+    padding: 0.35rem 0.75rem 0.4rem 2.8rem;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"],
+.login-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid #b2dded;
+    border-radius: 5px !important;
+    letter-spacing: .02em;
+    color: #283779;
+    font-weight: 400;
+    letter-spacing: .08rem;
+}
+
+.input-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 2px solid #283779;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.input-group input[type="checkbox"]:checked {
+    background-color: #ff594d;
+    border: 2px solid #283779;
+}
+
+.login-container button[type="submit"] {
+    width: 94px;
+    color: #fff;
+    background-color: #ff594d;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: normal;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 3px solid transparent;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.login-container button[type="submit"]:hover {
+    background-color: #283779;
+}
+
+.login-container .forgot-password a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ff594d;
+    position: relative;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #283779 0%, #283779 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    transition: background-size 0.3s, color 0.3s;
+}
+
+.login-container .forgot-password a:hover {
+    background-size: 100% 2px;
+}
+
+.term-privacy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.term-privacy .line-height-1 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #283779;
+    line-height: 1.2;
+}
+
+.term-privacy .btn-link {
+    margin-left: .3rem;
+}
+
+.term-privacy .btn-link a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ff594d;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #283779 0%, #283779 100%);
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    transition: background-size 0.3s, color 0.3s;
+}
+
+.term-privacy .btn-link a:hover {
+    background-size: 100% 2px;
+}

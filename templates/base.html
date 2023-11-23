@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block pagetitle %}{% endblock pagetitle %}</title>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/vendor/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+        <a class="navbar-brand" href="/"><img src="https://dummyimage.com/150x36/000/fff.png" alt="" width="150" height="36"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                    <a class="nav-link" href="/">
+                        <i class="fa fa-fw fa-dashboard"></i>
+                        <span class="nav-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change Control Form">
+                    <a class="nav-link" href="/changecontrolform">
+                        <i class="fa fa-fw fa-folder"></i>
+                        <span class="nav-link-text">Change Control Form</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings3">
+                        <i class="fa fa-fw fa-list"></i>
+                        <span class="nav-link-text text-white">Menu</span>
+                    </a>
+                    <ul class="sidenav-second-level collapse" id="collapseMylistings3">
+                        <li>
+                            <a href="/">Menu 1</a>
+                        </li>
+                        <li>
+                            <a href="/">Menu 2</a>
+                        </li>
+                        <li>
+                            <a href="/">Menu 3</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Company 2023</small>
+            </div>
+        </div>
+    </footer>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../static/js/main.js"></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function($) {
+            $("#sidenavToggler").on('click', function(e) {
+                e.preventDefault();
+                $("body").toggleClass("sidenav-toggled");
+                $(".navbar-sidenav .nav-link-collapse").addClass("collapsed");
+                $(".navbar-sidenav .sidenav-second-level, .navbar-sidenav .sidenav-third-level").removeClass("show");
+            });
+        })(jQuery);
+    </script>
+</body>
+
+</html>

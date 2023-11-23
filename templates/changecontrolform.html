@@ -1,0 +1,170 @@
+{% extends "base.html" %} {% block pagetitle %} Change Control Form {% endblock pagetitle %} {% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Change Control Form</li>
+</ol>
+<div class="form-container">
+    <form action="" method="post">
+        <div class="form-content">
+            <div class="input-group input-light">
+                <label for="areaOfChange" class="input-title">Area of Change:</label>
+            </div>
+            <div class="radio-group row">
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="process" name="areaOfChange" value="Process">
+                    <label for="process" class="input-title">Process</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="document" name="areaOfChange" value="Document">
+                    <label for="document" class="input-title">Document</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="sop" name="areaOfChange" value="SOP">
+                    <label for="sop" class="input-title">SOP</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="procedure" name="areaOfChange" value="Procedure">
+                    <label for="procedure" class="input-title">Procedure</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="equipment" name="areaOfChange" value="Equipment">
+                    <label for="equipment" class="input-title">Equipment</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="insrtument" name="areaOfChange" value="Insrtument">
+                    <label for="insrtument" class="input-title">Insrtument</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="testing-procedure" name="areaOfChange" value="Testing Procedure">
+                    <label for="testing-procedure" class="input-title">Testing Procedure</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="specification" name="areaOfChange" value="Specification">
+                    <label for="specification" class="input-title">Specification</label>
+                </div>
+                <div class="input-group input-light col-md-4">
+                    <input type="radio" id="starting-material" name="areaOfChange" value="Starting Material">
+                    <label for="starting-material" class="input-title">Starting Material</label>
+                </div>
+                <div class="input-group input-light col-md-6">
+                    <input type="radio" id="facility-and-environment-control" name="areaOfChange" value="Facility And Environment Control">
+                    <label for="facility-and-environment-control" class="input-title">Facility And Environment Control</label>
+                </div>
+                <div class="input-group input-light col-md-6">
+                    <input type="radio" id="introduction-of-product" name="areaOfChange" value="Introduction Of Product">
+                    <label for="introduction-of-product" class="input-title">Introduction Of Product</label>
+                </div>
+                <div class="input-group input-light col-md-6">
+                    <input type="radio" id="deletion-of-product" name="areaOfChange" value="Deletion Of Product">
+                    <label for="deletion-of-product" class="input-title">Deletion Of Product</label>
+                </div>
+                <div class="input-group input-light col-md-6">
+                    <input type="radio" id="other" name="areaOfChange" value="Other">
+                    <label for="other" class="input-title">Other</label>
+                    <div class="other-document" style="display: none; width: 100%;">
+                        <input type="text" class="form-control" name="documentNumber" id="documentNumber" placeholder="Enter Document Number">
+                    </div>
+                </div>
+
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="initiatorDepartment" class="input-title">Change Affects Initiator Department:</label>
+                <input type="text" id="initiatorDepartment" name="initiatorDepartment" class="form-control">
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="description" class="input-title">Description of Change:</label>
+                <input type="text" id="description" name="description" class="form-control">
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="existingStatus" class="input-title">Existing Status:</label>
+                <input type="text" id="existingStatus" name="existingStatus" class="form-control">
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="proposedChange" class="input-title">Proposed Change:</label>
+                <input type="text" id="proposedChange" name="proposedChange" class="form-control">
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="reasonJustification" class="input-title">Reason/Justification for Change:</label>
+                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control">
+            </div>
+            <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="comments" class="input-title">Comments by Other Departments:</label>
+                <table class="department-table">
+                    <thead>
+                        <tr>
+                            <th>Department Names</th>
+                            <th>Yes</th>
+                            <th>No</th>
+                            <th>Any</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><label for="qa">Quality Assurance</label></td>
+                            <td><input type="radio" name="QualityAssurance" value="Yes" id="qa_yes"></td>
+                            <td><input type="radio" name="QualityAssurance" value="No" id="qa_no"></td>
+                            <td><input type="radio" name="QualityAssurance" value="Any" id="qa_any"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="production">Production</label></td>
+                            <td><input type="radio" name="Production" value="Yes" id="production_yes"></td>
+                            <td><input type="radio" name="Production" value="No" id="production_no"></td>
+                            <td><input type="radio" name="Production" value="Any" id="production_any"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="qc">Quality Control</label></td>
+                            <td><input type="radio" name="QualityControl" value="Yes" id="qc_yes"></td>
+                            <td><input type="radio" name="QualityControl" value="No" id="qc_no"></td>
+                            <td><input type="radio" name="QualityControl" value="Any" id="qc_any"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="engineering">Engineering</label></td>
+                            <td><input type="radio" name="Engineering" value="Yes" id="engineering_yes"></td>
+                            <td><input type="radio" name="Engineering" value="No" id="engineering_no"></td>
+                            <td><input type="radio" name="Engineering" value="Any" id="engineering_any"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr class="styled-hr">
+            <div>
+                <button type="submit" class="btn btn-form btn-secondary-color">
+                    <span>Submit</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    const otherRadio = document.querySelector('input[name="areaOfChange"][value="Other"]');
+    const documentNumberField = document.querySelector('.other-document');
+    const radioButtons = document.querySelectorAll('input[name="areaOfChange"]');
+
+    radioButtons.forEach((radioButton) => {
+        radioButton.addEventListener('change', function() {
+            if (otherRadio.checked) {
+                documentNumberField.style.display = 'block';
+            } else {
+                documentNumberField.style.display = 'none';
+            }
+        });
+    });
+
+    otherRadio.addEventListener('change', function() {
+        if (this.checked) {
+            documentNumberField.style.display = 'block';
+        } else {
+            documentNumberField.style.display = 'none';
+        }
+    });
+</script>
+
+{% endblock %}
