@@ -45,7 +45,7 @@ class DBO:
                    
     def get_cred(self, username):
         try:
-            stmt = "SELECT FIRST_NAME,LAST_NAME,PASSWORD,STATUS,LOCKED,USER_TYPE  from ccndb.USERS where status='ACTIVE' and USERNAME = '" + username + "'"
+            stmt = "SELECT FIRST_NAME,LAST_NAME,PASSWORD,STATUS,LOCKED,USER_DEPARTMENT,USER_LEVEL  from ccndb.USERS where status='ACTIVE' and USERNAME = '" + username + "'"
             conn = mysql.connector.connect(**config)
             cursor = conn.cursor()
             cursor.execute(stmt)
@@ -56,7 +56,8 @@ class DBO:
                 ret_obj["PASSWORD"] = row[2]
                 ret_obj["STATUS"] = row[3]
                 ret_obj["LOCKED"] = row[4]
-                ret_obj["USER_TYPE"] = row[5]
+                ret_obj["USER_DEPARTMENT"] = row[5]
+                ret_obj["USER_LEVEL"] = row[6]
                 break
             return ret_obj
         except Exception as e:

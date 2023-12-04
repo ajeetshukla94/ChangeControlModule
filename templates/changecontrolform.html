@@ -94,49 +94,11 @@
                 <label for="reasonJustification" class="input-title">Reason/Justification for Change:</label>
                 <input type="text" id="reasonJustification" name="reasonJustification" class="form-control">
             </div>
-            <hr class="styled-hr">
-            <div class="input-group input-light">
-                <label for="comments" class="input-title">Comments by Other Departments:</label>
-                <table class="department-table">
-                    <thead>
-                        <tr>
-                            <th>Department Names</th>
-                            <th>Yes</th>
-                            <th>No</th>
-                            <th>Any</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><label for="qa">Quality Assurance</label></td>
-                            <td><input type="radio" name="QualityAssurance" value="Yes" id="qa_yes"></td>
-                            <td><input type="radio" name="QualityAssurance" value="No" id="qa_no"></td>
-                            <td><input type="radio" name="QualityAssurance" value="Any" id="qa_any"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="production">Production</label></td>
-                            <td><input type="radio" name="Production" value="Yes" id="production_yes"></td>
-                            <td><input type="radio" name="Production" value="No" id="production_no"></td>
-                            <td><input type="radio" name="Production" value="Any" id="production_any"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="qc">Quality Control</label></td>
-                            <td><input type="radio" name="QualityControl" value="Yes" id="qc_yes"></td>
-                            <td><input type="radio" name="QualityControl" value="No" id="qc_no"></td>
-                            <td><input type="radio" name="QualityControl" value="Any" id="qc_any"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="engineering">Engineering</label></td>
-                            <td><input type="radio" name="Engineering" value="Yes" id="engineering_yes"></td>
-                            <td><input type="radio" name="Engineering" value="No" id="engineering_no"></td>
-                            <td><input type="radio" name="Engineering" value="Any" id="engineering_any"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            
+           
             <hr class="styled-hr">
             <div>
-                <button type="submit" class="btn btn-form btn-secondary-color">
+                <button type="button" class="btn btn-form btn-secondary-color" onclick="request_change_control('submit')">
                     <span>Submit</span>
                 </button>
             </div>
