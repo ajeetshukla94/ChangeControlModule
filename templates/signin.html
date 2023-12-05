@@ -18,11 +18,11 @@
                 <h4 class="sub-title mb-2">Sign In.</h4>
                 <span class="heading-desc">Sign in to your account below.</span>
             </div>
-            <form action = "/render_login" method="post">
+            <form action="/render_login" method="post">
                 <div class="form-content">
                     <div class="input-group input-light">
-                        <label for="email" class="input-title">Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="" required>
+                        <label for="username" class="input-title">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="" required>
                     </div>
                     <div class="input-group input-light">
                         <label for="password" class="input-title">Password</label>
@@ -35,12 +35,6 @@
                         <button type="submit" class="btn btn-form btn-secondary-color">
                             <span>Continue</span>
                         </button>
-                    </div>
-                    <div class="term-privacy d-flex justify-content-center mt-2">
-                        <span class="line-height-1">New to Main? </span>
-                        <div class="btn-link">
-                            <a class="line-height-1" href="/signup"> Create Profile</a>
-                        </div>
                     </div>
                 </div>
             </form>

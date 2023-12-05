@@ -1,5 +1,5 @@
-from flask import Flask, render_template,request,flash,session,make_response,jsonify
-from db_dervices import DBO
+from flask import Flask, render_template,request,redirect, flash,session,make_response,jsonify, session, url_for
+from db_services import DBO
 from crypt_services import encrypt_sha256
 import random
 import string,os,json
@@ -20,17 +20,17 @@ def signin():
 @app.route("/render_login", methods=["GET", "POST"])
 def render_login(): 
     form_data    = request.form
-    user_id      = "hr_l1"#form_data['email'].lower()
-    password     = "password"#form_data['password']
+    user_id      = form_data['username'].lower()
+    password     = form_data['password']
     account      = dbo.get_cred(user_id)
     enc_pass     = password
     if(enc_pass == account["PASSWORD"]):        
-      session_var = {"user_id": user_id,
+      session['session_var'] = {"user_id": user_id,
                     "USER_NAME": account["FIRST_NAME"]+" "+account["LAST_NAME"],
                     "USER_DEPARTMENT": account["USER_DEPARTMENT"],
                     "USER_LEVEL": account["USER_LEVEL"]}
-      return make_response(render_template('dashboard.html',msg = True, err = False, warn = False, role = session_var["USER_DEPARTMENT"],
-                                level = session_var["USER_LEVEL"]),200)
+      return make_response(render_template('dashboard.html',msg = True, err = False, warn = False, role=session['session_var']["USER_DEPARTMENT"],
+                                             level=session['session_var']["USER_LEVEL"]),200)
     else:
       flash('Invalid Credentials')
       return make_response(render_template("signin.html", msg = False, err = True, warn = False),403)   
@@ -47,23 +47,39 @@ def logout():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    session_var = session.get('session_var', {})
+    return render_template('dashboard.html', session_var=session_var)
+
+
 
 @app.route('/changecontrolform') 
 def changecontrolform():
-    return render_template('changecontrolform.html')  
+    session_var = session.get('session_var', {})
+    return render_template('changecontrolform.html', session_var=session_var)  
     
     
 
-@app.route("/request_change_control",methods=['GET', 'POST'])
+@app.route("/request_change_control", methods=['POST'])
 def request_change_control():
-    data          = request.form.get('params_data')
-    input_details = json.loads(data) 
-    print(input_details)
-              
-    d = {"error":"none"}
-   
-    return flask.jsonify(d) 
+    try:
+        area_of_change = request.form.get('areaOfChange')
+        document_number = request.form.get('documentNumber')
+        initiator_department = request.form.get('initiatorDepartmentHidden')
+        description = request.form.get('description')
+        existing_status = request.form.get('existingStatus')
+        proposed_change = request.form.get('proposedChange')
+        reason_justification = request.form.get('reasonJustification')
+        if area_of_change == 'Other':
+            area_of_change = f'Other: {document_number}'
+
+        dbo.insert_change_control_data(area_of_change, initiator_department, description, existing_status, proposed_change, reason_justification)
+
+        response = {"status": "success"}
+        return redirect(url_for('changecontrolform'))
+
+    except Exception as e:
+        response = {"status": "error", "message": str(e)}
+        return jsonify(response), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

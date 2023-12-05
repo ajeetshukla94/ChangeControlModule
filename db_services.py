@@ -63,5 +63,25 @@ class DBO:
         except Exception as e:
             return e
         
-    
-    
+    def insert_change_control_data(self, area_of_change, initiator_department, description, existing_status, proposed_change, reason_justification, **kwargs):
+        try:
+            conn = mysql.connector.connect(**config)
+            cursor = conn.cursor()
+
+            insert_query = """
+            INSERT INTO ccndb.change_control_master
+            (Area_of_Change, Affects_Initiator_Department, Change_Description, Existing_Status, Proposed_Change, Change_Reason)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            """
+
+            cursor.execute(insert_query, (area_of_change, initiator_department, description, existing_status, proposed_change, reason_justification))
+            conn.commit()
+
+            cursor.close()
+            conn.close()
+
+        except Exception as e:
+            print(f"Error inserting data into the database: {str(e)}")
+            
+        
+        

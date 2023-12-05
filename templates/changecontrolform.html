@@ -6,99 +6,62 @@
     <li class="breadcrumb-item active">Change Control Form</li>
 </ol>
 <div class="form-container">
-    <form action="" method="post">
+    <form id="changeControlForm" action="/request_change_control" method="post">
         <div class="form-content">
             <div class="input-group input-light">
                 <label for="areaOfChange" class="input-title">Area of Change:</label>
             </div>
-            <div class="radio-group row">
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="process" name="areaOfChange" value="Process">
-                    <label for="process" class="input-title">Process</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="document" name="areaOfChange" value="Document">
-                    <label for="document" class="input-title">Document</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="sop" name="areaOfChange" value="SOP">
-                    <label for="sop" class="input-title">SOP</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="procedure" name="areaOfChange" value="Procedure">
-                    <label for="procedure" class="input-title">Procedure</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="equipment" name="areaOfChange" value="Equipment">
-                    <label for="equipment" class="input-title">Equipment</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="insrtument" name="areaOfChange" value="Insrtument">
-                    <label for="insrtument" class="input-title">Insrtument</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="testing-procedure" name="areaOfChange" value="Testing Procedure">
-                    <label for="testing-procedure" class="input-title">Testing Procedure</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="specification" name="areaOfChange" value="Specification">
-                    <label for="specification" class="input-title">Specification</label>
-                </div>
-                <div class="input-group input-light col-md-4">
-                    <input type="radio" id="starting-material" name="areaOfChange" value="Starting Material">
-                    <label for="starting-material" class="input-title">Starting Material</label>
-                </div>
-                <div class="input-group input-light col-md-6">
-                    <input type="radio" id="facility-and-environment-control" name="areaOfChange" value="Facility And Environment Control">
-                    <label for="facility-and-environment-control" class="input-title">Facility And Environment Control</label>
-                </div>
-                <div class="input-group input-light col-md-6">
-                    <input type="radio" id="introduction-of-product" name="areaOfChange" value="Introduction Of Product">
-                    <label for="introduction-of-product" class="input-title">Introduction Of Product</label>
-                </div>
-                <div class="input-group input-light col-md-6">
-                    <input type="radio" id="deletion-of-product" name="areaOfChange" value="Deletion Of Product">
-                    <label for="deletion-of-product" class="input-title">Deletion Of Product</label>
-                </div>
-                <div class="input-group input-light col-md-6">
-                    <input type="radio" id="other" name="areaOfChange" value="Other">
-                    <label for="other" class="input-title">Other</label>
-                    <div class="other-document" style="display: none; width: 100%;">
-                        <input type="text" class="form-control" name="documentNumber" id="documentNumber" placeholder="Enter Document Number">
-                    </div>
-                </div>
-
+            <select id="areaOfChange" name="areaOfChange" class="form-control" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Process">Process</option>
+                <option value="Document">Document</option>
+                <option value="SOP">SOP</option>
+                <option value="Procedure">Procedure</option>
+                <option value="Equipment">Equipment</option>
+                <option value="Insrtument">Insrtument</option>
+                <option value="Testing Procedure">Testing Procedure</option>
+                <option value="Specification">Specification</option>
+                <option value="Starting Material">Starting Material</option>
+                <option value="Facility And Environment Control">Facility And Environment Control</option>
+                <option value="Introduction Of Product">Introduction Of Product</option>
+                <option value="Deletion Of Product">Deletion Of Product</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="other-document" style="display: none; width: 100%;">
+                <label for="documentNumber" class="input-title">Enter Document Number:</label>
+                <input type="text" class="form-control" name="documentNumber" id="documentNumber" placeholder="Enter Document Number">
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="initiatorDepartment" class="input-title">Change Affects Initiator Department:</label>
-                <input type="text" id="initiatorDepartment" name="initiatorDepartment" class="form-control">
+                <input type="text" id="initiatorDepartment" name="initiatorDepartment" class="form-control" value="{{ session['session_var']['USER_DEPARTMENT'] }}" disabled>
+                <input type="hidden" name="initiatorDepartmentHidden" value="{{ session['session_var']['USER_DEPARTMENT'] }}">
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="description" class="input-title">Description of Change:</label>
-                <input type="text" id="description" name="description" class="form-control">
+                <input type="text" id="description" name="description" class="form-control" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="existingStatus" class="input-title">Existing Status:</label>
-                <input type="text" id="existingStatus" name="existingStatus" class="form-control">
+                <input type="text" id="existingStatus" name="existingStatus" class="form-control" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="proposedChange" class="input-title">Proposed Change:</label>
-                <input type="text" id="proposedChange" name="proposedChange" class="form-control">
+                <input type="text" id="proposedChange" name="proposedChange" class="form-control" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="reasonJustification" class="input-title">Reason/Justification for Change:</label>
-                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control">
+                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control" required>
             </div>
-            
-           
+
+
             <hr class="styled-hr">
             <div>
-                <button type="button" class="btn btn-form btn-secondary-color" onclick="request_change_control('submit')">
+                <button type="submit" class="btn btn-form btn-primary">
                     <span>Submit</span>
                 </button>
             </div>
@@ -106,27 +69,30 @@
     </form>
 </div>
 <script>
-    const otherRadio = document.querySelector('input[name="areaOfChange"][value="Other"]');
+    const areaOfChangeDropdown = document.getElementById('areaOfChange');
     const documentNumberField = document.querySelector('.other-document');
-    const radioButtons = document.querySelectorAll('input[name="areaOfChange"]');
 
-    radioButtons.forEach((radioButton) => {
-        radioButton.addEventListener('change', function() {
-            if (otherRadio.checked) {
-                documentNumberField.style.display = 'block';
-            } else {
-                documentNumberField.style.display = 'none';
-            }
-        });
-    });
-
-    otherRadio.addEventListener('change', function() {
-        if (this.checked) {
+    areaOfChangeDropdown.addEventListener('change', function() {
+        if (this.value === 'Other') {
             documentNumberField.style.display = 'block';
+            document.getElementById('documentNumber').setAttribute('required', true);
         } else {
             documentNumberField.style.display = 'none';
+            document.getElementById('documentNumber').removeAttribute('required');
         }
     });
+
+    function validateForm() {
+        const areaOfChangeValue = areaOfChangeDropdown.value;
+        const documentNumberValue = document.getElementById('documentNumber').value;
+
+        if (areaOfChangeValue === 'Other' && !documentNumberValue) {
+            alert('Please enter Document Number for "Other" option.');
+            return false;
+        }
+
+        return true;
+    }
 </script>
 
 {% endblock %}
