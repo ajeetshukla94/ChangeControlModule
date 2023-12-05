@@ -1,9 +1,28 @@
 {% extends "base.html" %} {% block pagetitle %} Main - Dashboard {% endblock pagetitle %} {% block content %}
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="/">Dashboard</a>
-    </li>
-    <li class="breadcrumb-item active">Add Document</li>
-</ol>
-<h1>Welcome,</h1>
-{% endblock %}
+<h3>Welcome, {{ session['session_var']["USER_NAME"]|title }}</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 60%;">CCN Title</th>
+                <th scope="col" style="width: 20%; text-align: center;">Status</th>
+                <th scope="col" style="width: 20%; text-align: center;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if audit_data %} {% for record in audit_data %}
+            <tr>
+                <td style="width: 60%;">{{ record.Application_id }}</td>
+                <td style="width: 20%; text-align: center;">{{ record.Status }}</td>
+                <td style="width: 20%; text-align: center;">
+                    <a href="{{ url_for('update_form', audit_id=record.Audit_id) }}" class="btn btn-form btn-primary">Update</a>
+                </td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+                <td colspan="3">No data available</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    {% endblock %}

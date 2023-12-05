@@ -40,26 +40,38 @@
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="description" class="input-title">Description of Change:</label>
-                <input type="text" id="description" name="description" class="form-control" required>
+                <input type="text" id="description" name="description" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="existingStatus" class="input-title">Existing Status:</label>
-                <input type="text" id="existingStatus" name="existingStatus" class="form-control" required>
+                <input type="text" id="existingStatus" name="existingStatus" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="proposedChange" class="input-title">Proposed Change:</label>
-                <input type="text" id="proposedChange" name="proposedChange" class="form-control" required>
+                <input type="text" id="proposedChange" name="proposedChange" class="form-control" value="{% if record and record.Proposed_Change %}{{ record.Proposed_Change }}{% endif %}" required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="reasonJustification" class="input-title">Reason/Justification for Change:</label>
-                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control" required>
+                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control" value="{% if record and record.Change_Reason %}{{ record.Change_Reason }}{% endif %}" required>
             </div>
-
-
+            <hr class="styled-hr"> {% if is_update %}
+            <div class="input-group input-light">
+                <label for="approval" class="input-title">Approved:</label>
+                <select id="approval" name="approval" class="form-control" required>
+            <option value="yes" {% if record and record.Approved == 'yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if record and record.Approved == 'no' %}selected{% endif %}>No</option>
+        </select>
+            </div>
             <hr class="styled-hr">
+            <div class="input-group input-light">
+                <label for="remark" class="input-title">Remark:</label>
+                <textarea id="remark" name="remark" class="form-control" required>{{ record.Remark }}</textarea>
+            </div>
+            {% endif %}
+
             <div>
                 <button type="submit" class="btn btn-form btn-primary">
                     <span>Submit</span>
