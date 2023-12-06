@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../static/css/signin.css">
     <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/vendor/font-awesome/css/font-awesome.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -18,6 +20,19 @@
                 <h4 class="sub-title mb-2">Sign In.</h4>
                 <span class="heading-desc">Sign in to your account below.</span>
             </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <!-- {{ message }}<br> -->
+                <script type="text/javascript">
+                    swal({
+                        text:"{{message}}",
+                        icon:"{{category}}"
+                    });
+                </script>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
             <form action="/render_login" method="post">
                 <div class="form-content">
                     <div class="input-group input-light">
