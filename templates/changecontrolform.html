@@ -6,30 +6,30 @@
     <li class="breadcrumb-item active">Change Control Form</li>
 </ol>
 <div class="form-container">
-    <form id="changeControlForm" action="/request_change_control" method="post">
+    <form id="changeControlForm" action="{% if is_update and record and 'Audit_id' in record %}/update_form_submit/{{ record['Audit_id'] }}{% else %}/request_change_control{% endif %}" method="post">
         <div class="form-content">
             <div class="input-group input-light">
                 <label for="areaOfChange" class="input-title">Area of Change:</label>
             </div>
-            <select id="areaOfChange" name="areaOfChange" class="form-control" required>
+            <select id="areaOfChange" name="areaOfChange" class="form-control" required {% if is_update %}disabled{% endif %}>
                 <option value="" disabled selected>Select an option</option>
-                <option value="Process">Process</option>
-                <option value="Document">Document</option>
-                <option value="SOP">SOP</option>
-                <option value="Procedure">Procedure</option>
-                <option value="Equipment">Equipment</option>
-                <option value="Insrtument">Insrtument</option>
-                <option value="Testing Procedure">Testing Procedure</option>
-                <option value="Specification">Specification</option>
-                <option value="Starting Material">Starting Material</option>
-                <option value="Facility And Environment Control">Facility And Environment Control</option>
-                <option value="Introduction Of Product">Introduction Of Product</option>
-                <option value="Deletion Of Product">Deletion Of Product</option>
+                <option value="Process" {% if record and record.Area_of_Change == 'Process' %}selected{% endif %}>Process</option>
+                <option value="Document" {% if record and record.Area_of_Change == 'Document' %}selected{% endif %}>Document</option>
+                <option value="SOP" {% if record and record.Area_of_Change == 'SOP' %}selected{% endif %}>SOP</option>
+                <option value="Procedure" {% if record and record.Area_of_Change == 'Procedure' %}selected{% endif %}>Procedure</option>
+                <option value="Equipment" {% if record and record.Area_of_Change == 'Equipment' %}selected{% endif %}>Equipment</option>
+                <option value="Insrtument" {% if record and record.Area_of_Change == 'Insrtument' %}selected{% endif %}>Insrtument</option>
+                <option value="Testing Procedure" {% if record and record.Area_of_Change == 'Testing Procedure' %}selected{% endif %}>Testing Procedure</option>
+                <option value="Specification" {% if record and record.Area_of_Change == 'Specification' %}selected{% endif %}>Specification</option>
+                <option value="Starting Material" {% if record and record.Area_of_Change == 'Starting Material' %}selected{% endif %}>Starting Material</option>
+                <option value="Facility And Environment Control" {% if record and record.Area_of_Change == 'Facility And Environment Control' %}selected{% endif %}>Facility And Environment Control</option>
+                <option value="Introduction Of Product" {% if record and record.Area_of_Change == 'Introduction Of Product' %}selected{% endif %}>Introduction Of Product</option>
+                <option value="Deletion Of Product" {% if record and record.Area_of_Change == 'Deletion Of Product' %}selected{% endif %}>Deletion Of Product</option>
                 <option value="Other">Other</option>
             </select>
             <div class="other-document" style="display: none; width: 100%;">
                 <label for="documentNumber" class="input-title">Enter Document Number:</label>
-                <input type="text" class="form-control" name="documentNumber" id="documentNumber" placeholder="Enter Document Number">
+                <input type="text" class="form-control" name="documentNumber" id="documentNumber" placeholder="Enter Document Number" {% if is_update %}disabled{% endif %}>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
@@ -40,35 +40,35 @@
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="description" class="input-title">Description of Change:</label>
-                <input type="text" id="description" name="description" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" required>
+                <input type="text" id="description" name="description" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" {% if is_update %}disabled{% endif %} required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="existingStatus" class="input-title">Existing Status:</label>
-                <input type="text" id="existingStatus" name="existingStatus" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" required>
+                <input type="text" id="existingStatus" name="existingStatus" class="form-control" value="{% if record and record.Existing_Status %}{{ record.Existing_Status }}{% endif %}" {% if is_update %}disabled{% endif %} required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="proposedChange" class="input-title">Proposed Change:</label>
-                <input type="text" id="proposedChange" name="proposedChange" class="form-control" value="{% if record and record.Proposed_Change %}{{ record.Proposed_Change }}{% endif %}" required>
+                <input type="text" id="proposedChange" name="proposedChange" class="form-control" value="{% if record and record.Proposed_Change %}{{ record.Proposed_Change }}{% endif %}" {% if is_update %}disabled{% endif %} required>
             </div>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="reasonJustification" class="input-title">Reason/Justification for Change:</label>
-                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control" value="{% if record and record.Change_Reason %}{{ record.Change_Reason }}{% endif %}" required>
+                <input type="text" id="reasonJustification" name="reasonJustification" class="form-control" value="{% if record and record.Change_Reason %}{{ record.Change_Reason }}{% endif %}" {% if is_update %}disabled{% endif %} required>
             </div>
             <hr class="styled-hr"> {% if is_update %}
             <div class="input-group input-light">
                 <label for="approval" class="input-title">Approved:</label>
-                <select id="approval" name="approval" class="form-control" required>
-            <option value="yes" {% if record and record.Approved == 'yes' %}selected{% endif %}>Yes</option>
-            <option value="no" {% if record and record.Approved == 'no' %}selected{% endif %}>No</option>
-        </select>
             </div>
+            <select id="approval" name="approval" class="form-control" required>
+                <option value="yes" {% if record and record.Approved == 'yes' %}selected{% endif %}>Yes</option>
+                <option value="no" {% if record and record.Approved == 'no' %}selected{% endif %}>No</option>
+            </select>
             <hr class="styled-hr">
             <div class="input-group input-light">
                 <label for="remark" class="input-title">Remark:</label>
-                <textarea id="remark" name="remark" class="form-control" required>{{ record.Remark }}</textarea>
+                <input type="text" id="remark" name="remark" class="form-control" required>{{ record.Remark }}
             </div>
             {% endif %}
 

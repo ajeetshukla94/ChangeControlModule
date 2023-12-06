@@ -98,18 +98,19 @@ def request_change_control():
         response = {"status": "error", "message": str(e)}
         return jsonify(response), 500
 
-@app.route('/update_form/<int:audit_id>')
+@app.route("/update_form/<int:audit_id>")
 def update_form(audit_id):
     record = dbo.get_audit_data_by_id(audit_id)
     print("Record Data:", record)
     return render_template('changecontrolform.html', record=record, is_update=True)
 
-@app.route("/update_form/<int:audit_id>", methods=['POST'])
+@app.route("/update_form_submit/<int:audit_id>", methods=['POST'])
 def update_form_submit(audit_id):
     approval = request.form.get('approval')
     remark = request.form.get('remark')
-
+    dbo.update_audit_data(audit_id, approval, remark)
     return redirect(url_for('dashboard'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

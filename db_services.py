@@ -166,3 +166,24 @@ class DBO:
         except Exception as e:
             print(f"Error fetching audit data by ID: {str(e)}")
             return None
+        
+
+    def update_audit_data(self, audit_id, approval, remark):
+        try:
+            conn = mysql.connector.connect(**config)
+            cursor = conn.cursor()
+
+            update_query = """
+            UPDATE ccndb.change_control_audit
+            SET Status = %s, Remark = %s
+            WHERE Audit_id = %s
+            """
+
+            cursor.execute(update_query, (approval, remark, audit_id))
+            conn.commit()
+
+            cursor.close()
+            conn.close()
+
+        except Exception as e:
+            print(f"Error updating audit data: {str(e)}")
